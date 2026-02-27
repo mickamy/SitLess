@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		279ADCA32F511D2800CD47F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27F3CD562F510CDC00D095F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27F3CD5D2F510CDC00D095F9;
+			remoteInfo = SitLess;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SitLessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F3CD5E2F510CDC00D095F9 /* SitLess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SitLess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		279ADCA02F511D2800CD47F4 /* SitLessTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SitLessTests;
+			sourceTree = "<group>";
+		};
 		27F3CD602F510CDC00D095F9 /* SitLess */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SitLess;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		279ADC9C2F511D2800CD47F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27F3CD5B2F510CDC00D095F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				27F3CD602F510CDC00D095F9 /* SitLess */,
+				279ADCA02F511D2800CD47F4 /* SitLessTests */,
 				27F3CD5F2F510CDC00D095F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				27F3CD5E2F510CDC00D095F9 /* SitLess.app */,
+				279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		279ADC9E2F511D2800CD47F4 /* SitLessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "SitLessTests" */;
+			buildPhases = (
+				279ADC9B2F511D2800CD47F4 /* Sources */,
+				279ADC9C2F511D2800CD47F4 /* Frameworks */,
+				279ADC9D2F511D2800CD47F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				279ADCA42F511D2800CD47F4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				279ADCA02F511D2800CD47F4 /* SitLessTests */,
+			);
+			name = SitLessTests;
+			packageProductDependencies = (
+			);
+			productName = SitLessTests;
+			productReference = 279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		27F3CD5D2F510CDC00D095F9 /* SitLess */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27F3CD692F510CDC00D095F9 /* Build configuration list for PBXNativeTarget "SitLess" */;
@@ -80,6 +128,10 @@
 				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
+					279ADC9E2F511D2800CD47F4 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 27F3CD5D2F510CDC00D095F9;
+					};
 					27F3CD5D2F510CDC00D095F9 = {
 						CreatedOnToolsVersion = 26.3;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				27F3CD5D2F510CDC00D095F9 /* SitLess */,
+				279ADC9E2F511D2800CD47F4 /* SitLessTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		279ADC9D2F511D2800CD47F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27F3CD5C2F510CDC00D095F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		279ADC9B2F511D2800CD47F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27F3CD5A2F510CDC00D095F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		279ADCA42F511D2800CD47F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27F3CD5D2F510CDC00D095F9 /* SitLess */;
+			targetProxy = 279ADCA32F511D2800CD47F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		279ADCA52F511D2800CD47F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AZ28EH9G9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SitLess.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SitLess";
+			};
+			name = Debug;
+		};
+		279ADCA62F511D2800CD47F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AZ28EH9G9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SitLess.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SitLess";
+			};
+			name = Release;
+		};
 		27F3CD672F510CDC00D095F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -312,6 +427,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "SitLessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				279ADCA52F511D2800CD47F4 /* Debug */,
+				279ADCA62F511D2800CD47F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27F3CD592F510CDC00D095F9 /* Build configuration list for PBXProject "SitLess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
