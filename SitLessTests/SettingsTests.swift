@@ -59,4 +59,14 @@ struct SettingsTests {
         #expect(decoded.stretchIntervalMinutes == Settings.stretchIntervalRange.lowerBound)
         #expect(decoded.idleThresholdMinutes == Settings.idleThresholdRange.lowerBound)
     }
+
+    @Test func clampsOnDirectAssignment() {
+        var settings = Settings()
+
+        settings.stretchIntervalMinutes = 0
+        #expect(settings.stretchIntervalMinutes == Settings.stretchIntervalRange.lowerBound)
+
+        settings.idleThresholdMinutes = 999
+        #expect(settings.idleThresholdMinutes == Settings.idleThresholdRange.upperBound)
+    }
 }
