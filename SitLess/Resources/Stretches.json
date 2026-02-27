@@ -1,0 +1,58 @@
+[
+    {
+        "id": "cat-cow",
+        "name": "キャット&カウ",
+        "instruction": "四つん這いで背中を丸める→反らす",
+        "durationSeconds": 30,
+        "targetArea": "腰"
+    },
+    {
+        "id": "child-pose",
+        "name": "チャイルドポーズ",
+        "instruction": "正座から前に手を伸ばす",
+        "durationSeconds": 30,
+        "targetArea": "腰"
+    },
+    {
+        "id": "knee-hug",
+        "name": "膝抱え",
+        "instruction": "仰向けで片膝を胸に引き寄せる（片側30秒）",
+        "durationSeconds": 60,
+        "targetArea": "腰・股関節"
+    },
+    {
+        "id": "spinal-twist",
+        "name": "腰ひねり",
+        "instruction": "仰向けで膝を横に倒す（片側30秒）",
+        "durationSeconds": 60,
+        "targetArea": "腰"
+    },
+    {
+        "id": "standing-forward-bend",
+        "name": "立位前屈",
+        "instruction": "立って前屈、膝は軽く曲げてOK",
+        "durationSeconds": 20,
+        "targetArea": "腰・ハムストリング"
+    },
+    {
+        "id": "hip-flexor",
+        "name": "股関節ストレッチ",
+        "instruction": "片膝立ちで前に体重をかける（片側30秒）",
+        "durationSeconds": 60,
+        "targetArea": "股関節"
+    },
+    {
+        "id": "glute-stretch",
+        "name": "お尻ストレッチ",
+        "instruction": "椅子に座って片足を反対の膝に乗せて前傾（片側30秒）",
+        "durationSeconds": 60,
+        "targetArea": "お尻・股関節"
+    },
+    {
+        "id": "shoulder-rolls",
+        "name": "肩甲骨回し",
+        "instruction": "両肩を大きく回す",
+        "durationSeconds": 20,
+        "targetArea": "肩・背中"
+    }
+]
