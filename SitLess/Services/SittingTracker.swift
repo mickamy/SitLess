@@ -34,6 +34,7 @@ final class SittingTracker {
         self.dailyRecord = storage.loadDailyRecord(for: CalendarDay())
         self.stretches = stretches
         self.notifier = notifier ?? StretchNotifier(storage: storage)
+        startTracking()
     }
 
     deinit {
