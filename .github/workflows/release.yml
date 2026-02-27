@@ -97,6 +97,11 @@ jobs:
 
             app "SitLess.app"
 
+            postflight do
+              system_command "/usr/bin/xattr",
+                             args: ["-cr", "#{appdir}/SitLess.app"]
+            end
+
             zap trash: [
               "~/Library/Preferences/com.mickamy.SitLess.plist",
             ]
