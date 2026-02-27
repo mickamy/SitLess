@@ -1,11 +1,21 @@
 import SwiftUI
 import UserNotifications
 
+final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification
+    ) async -> UNNotificationPresentationOptions {
+        [.banner, .sound]
+    }
+}
+
 @main
 struct SitLessApp: App {
     @State private var tracker = SittingTracker(
         stretches: loadBundledStretches()
     )
+    private let notificationDelegate = NotificationDelegate()
 
     var body: some Scene {
         MenuBarExtra {
@@ -17,6 +27,7 @@ struct SitLessApp: App {
     }
 
     init() {
+        UNUserNotificationCenter.current().delegate = notificationDelegate
         Task {
             try? await UNUserNotificationCenter.current()
                 .requestAuthorization(options: [.alert, .sound])
