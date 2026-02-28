@@ -199,6 +199,17 @@ struct SittingTrackerStretchDoneTests {
         #expect(sut.dailyRecord.stretchCount == 2)
     }
 
+    @Test func markStretchDoneDoesNotDuplicateOpenSessions() {
+        let (sut, _, _, _) = makeSUT()
+
+        sut.tick()
+        sut.tick()
+        sut.markStretchDone()
+
+        let openSessions = sut.dailyRecord.sessions.filter { $0.endedAt == nil }
+        #expect(openSessions.isEmpty)
+    }
+
     @Test func markStretchDonePersists() {
         let (sut, _, storage, _) = makeSUT()
 

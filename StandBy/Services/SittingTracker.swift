@@ -71,11 +71,13 @@ final class SittingTracker {
     func markStretchDone() {
         dailyRecord.stretchCount += 1
 
+        var sessions = dailyRecord.sessions.filter { $0.endedAt != nil }
         if let session = currentSession {
             var ended = session
             ended.endedAt = Date()
-            dailyRecord.sessions.append(ended)
+            sessions.append(ended)
         }
+        dailyRecord.sessions = sessions
         currentSession = SittingSession(startedAt: Date())
         currentSessionSeconds = 0
         notificationsSentInSession = 0
