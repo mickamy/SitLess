@@ -6,9 +6,13 @@ import WatchKit
 
 /// @unchecked Sendable: Test-only stub; no concurrent mutation.
 private final class StubMotionProvider: MotionActivityProviding, @unchecked Sendable {
+    var stationaryDuration: TimeInterval = 0
+
     func startMonitoring(handler: @escaping @Sendable (Bool) -> Void) {}
     func stopMonitoring() {}
-    func queryStationaryDuration(from start: Date, to end: Date) async -> TimeInterval { 0 }
+    func queryStationaryDuration(from start: Date, to end: Date) async -> TimeInterval {
+        stationaryDuration
+    }
 }
 
 /// @unchecked Sendable: Test-only spy; mutated only from test thread.
@@ -41,33 +45,34 @@ struct WatchSittingTrackerTests {
     private func makeSUT(
         hapticEnabled: Bool = true,
         today: @escaping () -> CalendarDay = { CalendarDay() }
-    ) -> (WatchSittingTracker, SpyNotificationSender, SpyHapticPlayer) {
+    ) -> (WatchSittingTracker, SpyNotificationSender, SpyHapticPlayer, StubMotionProvider) {
         let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
         let storage = UserDefaultsStorageProvider(defaults: UserDefaults(suiteName: suite)!)
         let sender = SpyNotificationSender()
         let haptic = SpyHapticPlayer()
         let notifier = WatchStretchNotifier(storage: storage, sender: sender, haptic: haptic)
+        let motion = StubMotionProvider()
 
         let tracker = WatchSittingTracker(
-            motionProvider: StubMotionProvider(),
+            motionProvider: motion,
             storage: storage,
             notifier: notifier,
             stretches: testStretches,
             watchSettings: WatchSettings(hapticEnabled: hapticEnabled),
             today: today
         )
-        return (tracker, sender, haptic)
+        return (tracker, sender, haptic, motion)
     }
 
     @Test func tickIncrementsSittingWhenStationary() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         #expect(sut.currentSessionSeconds == 60)
     }
 
     @Test func tickAccumulatesSitting() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         sut.tick()
@@ -75,7 +80,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickResetsWhenNotStationary() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         sut.isStationary = false
@@ -84,14 +89,14 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickRecordsSittingSession() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         #expect(sut.dailyRecord.sessions.count == 1)
     }
 
     @Test func tickEndsSessionWhenNotStationary() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         sut.isStationary = false
@@ -100,7 +105,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickSendsNotificationAtInterval() {
-        let (sut, sender, _) = makeSUT()
+        let (sut, sender, _, _) = makeSUT()
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         for _ in 1...5 { sut.tick() } // 5 min = interval
@@ -108,7 +113,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickDoesNotSendNotificationBeforeInterval() {
-        let (sut, sender, _) = makeSUT()
+        let (sut, sender, _, _) = makeSUT()
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         for _ in 1...4 { sut.tick() } // 4 min < interval
@@ -116,7 +121,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickPlaysHapticWhenEnabled() {
-        let (sut, _, haptic) = makeSUT(hapticEnabled: true)
+        let (sut, _, haptic, _) = makeSUT(hapticEnabled: true)
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         for _ in 1...5 { sut.tick() }
@@ -124,7 +129,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickSkipsHapticWhenDisabled() {
-        let (sut, _, haptic) = makeSUT(hapticEnabled: false)
+        let (sut, _, haptic, _) = makeSUT(hapticEnabled: false)
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         for _ in 1...5 { sut.tick() }
@@ -132,7 +137,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func markStretchDoneResetsSession() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.isStationary = true
         sut.tick()
         sut.tick()
@@ -142,7 +147,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func tickSendsMultipleNotificationsAcrossIntervals() {
-        let (sut, sender, _) = makeSUT()
+        let (sut, sender, _, _) = makeSUT()
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         for _ in 1...10 { sut.tick() } // 10 min = 2 intervals
@@ -151,7 +156,7 @@ struct WatchSittingTrackerTests {
 
     @Test func dateRolloverResetsSession() {
         var fakeDate = Date()
-        let (sut, _, _) = makeSUT(today: { CalendarDay(fakeDate) })
+        let (sut, _, _, _) = makeSUT(today: { CalendarDay(fakeDate) })
 
         sut.isStationary = true
         sut.tick()
@@ -160,12 +165,13 @@ struct WatchSittingTrackerTests {
         fakeDate = Calendar.current.date(byAdding: .day, value: 1, to: fakeDate)!
         sut.tick()
 
-        #expect(sut.currentSessionSeconds == 0)
+        // After rollover, session resets to 0 then handleSitting adds 60.
+        #expect(sut.currentSessionSeconds == 60)
         #expect(sut.dailyRecord.date == CalendarDay(fakeDate))
     }
 
     @Test func progressToNextStretch() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.settings = Settings(stretchIntervalMinutes: 5) // 300s
         sut.isStationary = true
         sut.tick() // 60s
@@ -173,7 +179,7 @@ struct WatchSittingTrackerTests {
     }
 
     @Test func minutesToNextStretch() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         sut.settings = Settings(stretchIntervalMinutes: 5)
         sut.isStationary = true
         sut.tick() // 60s sitting, 240s remaining = 4 min
@@ -185,5 +191,67 @@ struct WatchSittingTrackerTests {
         #expect(WatchSittingTracker.formatDuration(300) == "5m")
         #expect(WatchSittingTracker.formatDuration(3660) == "1h01m")
         #expect(WatchSittingTracker.formatDuration(7200) == "2h00m")
+    }
+
+    // MARK: - Background Update Tests
+
+    @Test func performBackgroundUpdateAddsSittingTime() async {
+        let (sut, _, _, motion) = makeSUT()
+        motion.stationaryDuration = 300 // 5 minutes stationary
+        sut.lastCheckDate = Date(timeIntervalSinceNow: -600)
+
+        await sut.performBackgroundUpdate()
+
+        #expect(sut.currentSessionSeconds == 300)
+    }
+
+    @Test func performBackgroundUpdateSendsNotificationAtThreshold() async {
+        let (sut, sender, _, motion) = makeSUT()
+        sut.settings = Settings(stretchIntervalMinutes: 5)
+        motion.stationaryDuration = 300 // exactly 5 min
+        sut.lastCheckDate = Date(timeIntervalSinceNow: -600)
+
+        await sut.performBackgroundUpdate()
+
+        #expect(sender.sentNotifications.count == 1)
+    }
+
+    @Test func performBackgroundUpdateUpdatesLastCheckDate() async {
+        let (sut, _, _, motion) = makeSUT()
+        motion.stationaryDuration = 60
+        let before = Date()
+        sut.lastCheckDate = Date(timeIntervalSinceNow: -120)
+
+        await sut.performBackgroundUpdate()
+
+        #expect(sut.lastCheckDate != nil)
+        #expect(sut.lastCheckDate! >= before)
+    }
+
+    @Test func performBackgroundUpdateNoOpWhenNoStationaryTime() async {
+        let (sut, sender, _, motion) = makeSUT()
+        motion.stationaryDuration = 0
+        sut.lastCheckDate = Date(timeIntervalSinceNow: -600)
+
+        await sut.performBackgroundUpdate()
+
+        #expect(sut.currentSessionSeconds == 0)
+        #expect(sender.sentNotifications.isEmpty)
+    }
+
+    @Test func startTrackingSetsLastCheckDate() {
+        let (sut, _, _, _) = makeSUT()
+        #expect(sut.lastCheckDate == nil)
+        sut.startTracking()
+        #expect(sut.lastCheckDate != nil)
+        sut.stopTracking()
+    }
+
+    @Test func tickUpdatesLastCheckDate() {
+        let (sut, _, _, _) = makeSUT()
+        #expect(sut.lastCheckDate == nil)
+        sut.isStationary = true
+        sut.tick()
+        #expect(sut.lastCheckDate != nil)
     }
 }

@@ -25,6 +25,8 @@ final class WatchSittingTracker {
     private let today: () -> CalendarDay
     /// Internal for testability; updated by MotionActivityProviding callback.
     var isStationary: Bool = false
+    /// Tracks the last time background or foreground processing occurred.
+    var lastCheckDate: Date?
 
     init(
         motionProvider: any MotionActivityProviding = CMMotionActivityProvider(),
@@ -51,6 +53,7 @@ final class WatchSittingTracker {
     // MARK: - Tracking
 
     func startTracking() {
+        lastCheckDate = Date()
         motionProvider.startMonitoring { [weak self] stationary in
             Task { @MainActor in
                 self?.isStationary = stationary
@@ -70,6 +73,7 @@ final class WatchSittingTracker {
 
     /// Called every 60 seconds by the timer. Internal for testability.
     func tick() {
+        lastCheckDate = Date()
         checkDateRollover()
 
         if isStationary {
@@ -78,6 +82,54 @@ final class WatchSittingTracker {
             handleNotSitting()
         }
 
+        storage.saveDailyRecord(dailyRecord)
+    }
+
+    /// Called from the background refresh task to catch up on missed sitting time.
+    func performBackgroundUpdate() async {
+        let now = Date()
+        let start = lastCheckDate ?? now
+
+        guard start < now else {
+            lastCheckDate = now
+            return
+        }
+
+        checkDateRollover()
+
+        let stationarySeconds = await motionProvider.queryStationaryDuration(from: start, to: now)
+        let stationaryMinutes = Int(stationarySeconds) / 60
+
+        if stationaryMinutes > 0 {
+            if currentSession == nil {
+                currentSession = SittingSession(startedAt: start)
+            }
+            currentSessionSeconds += stationaryMinutes * 60
+            dailyRecord.sessions = updateCurrentSessionInList()
+
+            let intervalSeconds = settings.stretchIntervalMinutes * 60
+            if intervalSeconds > 0 {
+                let expected = currentSessionSeconds / intervalSeconds
+                if expected > notificationsSentInSession {
+                    // Send at most one notification per background catch-up
+                    // to avoid flooding the user after a long background period.
+                    notifier.sendStretchReminder(
+                        stretches: stretches,
+                        hapticEnabled: watchSettings.hapticEnabled
+                    )
+                    notificationsSentInSession = expected
+                }
+            }
+        }
+
+        // Sync isStationary with recent motion so the first foreground tick
+        // does not immediately reset the restored session.
+        let recentStationary = await motionProvider.queryStationaryDuration(
+            from: Date(timeIntervalSinceNow: -60), to: now
+        )
+        isStationary = recentStationary > 30
+
+        lastCheckDate = now
         storage.saveDailyRecord(dailyRecord)
     }
 
