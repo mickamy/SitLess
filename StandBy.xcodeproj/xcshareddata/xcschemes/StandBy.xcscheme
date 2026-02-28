@@ -17,7 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
                BuildableName = "StandBy.app"
-               BlueprintName = "StandBy"
+               BlueprintName = "StandByMac"
                ReferencedContainer = "container:StandBy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,8 +36,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "279ADC9E2F511D2800CD47F4"
-               BuildableName = "StandByTests.xctest"
-               BlueprintName = "StandByTests"
+               BuildableName = "StandByMacTests.xctest"
+               BlueprintName = "StandByMacTests"
                ReferencedContainer = "container:StandBy.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -59,7 +59,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
             BuildableName = "StandBy.app"
-            BlueprintName = "StandBy"
+            BlueprintName = "StandByMac"
             ReferencedContainer = "container:StandBy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,7 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
             BuildableName = "StandBy.app"
-            BlueprintName = "StandBy"
+            BlueprintName = "StandByMac"
             ReferencedContainer = "container:StandBy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
