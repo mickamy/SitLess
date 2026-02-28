@@ -19,7 +19,7 @@ nonisolated struct WatchSettings: Codable, Equatable, Sendable {
             let data = try JSONEncoder().encode(self)
             defaults.set(data, forKey: Self.key)
         } catch {
-            // Encoding a simple Codable struct should never fail.
+            assertionFailure("Failed to encode WatchSettings: \(error)")
         }
     }
 }

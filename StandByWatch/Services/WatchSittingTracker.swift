@@ -101,10 +101,13 @@ final class WatchSittingTracker {
         let stationaryMinutes = Int(stationarySeconds) / 60
 
         if stationaryMinutes > 0 {
+            let additionalSeconds = stationaryMinutes * 60
             if currentSession == nil {
-                currentSession = SittingSession(startedAt: start)
+                // Align startedAt with stationary duration so durationSeconds
+                // stays consistent with currentSessionSeconds.
+                currentSession = SittingSession(startedAt: now.addingTimeInterval(TimeInterval(-additionalSeconds)))
             }
-            currentSessionSeconds += stationaryMinutes * 60
+            currentSessionSeconds += additionalSeconds
             dailyRecord.sessions = updateCurrentSessionInList()
 
             let intervalSeconds = settings.stretchIntervalMinutes * 60

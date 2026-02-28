@@ -25,10 +25,16 @@ final class WatchAppDelegate: NSObject, WKApplicationDelegate {
         for task in backgroundTasks {
             switch task {
             case let refreshTask as WKApplicationRefreshBackgroundTask:
-                Task { @MainActor in
+                var backgroundTask: Task<Void, Never>?
+
+                refreshTask.expirationHandler = {
+                    backgroundTask?.cancel()
+                }
+
+                backgroundTask = Task { @MainActor in
+                    defer { refreshTask.setTaskCompletedWithSnapshot(false) }
                     await tracker.performBackgroundUpdate()
                     scheduleBackgroundRefresh()
-                    refreshTask.setTaskCompletedWithSnapshot(false)
                 }
             default:
                 task.setTaskCompletedWithSnapshot(false)
@@ -41,7 +47,11 @@ final class WatchAppDelegate: NSObject, WKApplicationDelegate {
         WKApplication.shared().scheduleBackgroundRefresh(
             withPreferredDate: preferredDate,
             userInfo: nil
-        ) { _ in }
+        ) { error in
+            if let error {
+                assertionFailure("Failed to schedule background refresh: \(error)")
+            }
+        }
     }
 
     private static func loadStretches() -> [Stretch] {

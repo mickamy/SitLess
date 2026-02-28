@@ -228,6 +228,21 @@ struct WatchSittingTrackerTests {
         #expect(sut.lastCheckDate! >= before)
     }
 
+    @Test func performBackgroundUpdateRecordsDailyTotal() async {
+        let (sut, _, _, motion) = makeSUT()
+        // 10 min gap, only 5 min stationary
+        motion.stationaryDuration = 300
+        sut.lastCheckDate = Date(timeIntervalSinceNow: -600)
+
+        await sut.performBackgroundUpdate()
+
+        #expect(sut.dailyRecord.sessions.count == 1)
+        // Session duration should reflect stationary time, not elapsed time.
+        let sessionDuration = sut.dailyRecord.sessions.first?.durationSeconds ?? 0
+        #expect(sessionDuration >= 295 && sessionDuration <= 305)
+        #expect(sut.dailyRecord.totalSittingSeconds >= 295 && sut.dailyRecord.totalSittingSeconds <= 305)
+    }
+
     @Test func performBackgroundUpdateNoOpWhenNoStationaryTime() async {
         let (sut, sender, _, motion) = makeSUT()
         motion.stationaryDuration = 0
