@@ -1,4 +1,4 @@
-# SitLess
+# StandBy
 
 macOS メニューバー常駐アプリ。座りすぎを検知してストレッチをリマインドします。
 
@@ -17,9 +17,9 @@ macOS メニューバー常駐アプリ。座りすぎを検知してストレ�
 ## ビルド
 
 ```bash
-git clone https://github.com/mickamy/SitLess.git
-cd SitLess
-open SitLess.xcodeproj
+git clone https://github.com/mickamy/StandBy.git
+cd StandBy
+open StandBy.xcodeproj
 ```
 
 Xcode でビルド・実行してください。外部依存はありません。
@@ -29,21 +29,21 @@ Xcode でビルド・実行してください。外部依存はありません�
 ### Homebrew
 
 ```bash
-brew install --cask mickamy/tap/sitless
+brew install --cask mickamy/tap/standby
 ```
 
 ### 手動
 
-[Releases](https://github.com/mickamy/SitLess/releases) から `SitLess.app.zip` をダウンロードし、`/Applications` に配置してください。コード署名なしで配布しているため、初回起動前に Gatekeeper の隔離属性を解除する必要があります:
+[Releases](https://github.com/mickamy/StandBy/releases) から `StandBy.app.zip` をダウンロードし、`/Applications` に配置してください。コード署名なしで配布しているため、初回起動前に Gatekeeper の隔離属性を解除する必要があります:
 
 ```bash
-xattr -cr /Applications/SitLess.app
+xattr -cr /Applications/StandBy.app
 ```
 
 ## アーキテクチャ
 
 ```
-SitLess/
+StandBy/
 ├── Models/
 │   ├── Settings.swift        # 設定（バリデーション付き）
 │   ├── DailyRecord.swift     # 日次記録・CalendarDay・SittingSession
@@ -60,7 +60,7 @@ SitLess/
 │   └── StretchListView.swift # ストレッチ一覧
 ├── Resources/
 │   └── Stretches.json        # 内蔵ストレッチデータ
-└── SitLessApp.swift          # エントリーポイント
+└── StandByApp.swift          # エントリーポイント
 ```
 
 主要な設計判断:
@@ -72,7 +72,7 @@ SitLess/
 ## テスト
 
 ```bash
-xcodebuild test -scheme SitLess -destination 'platform=macOS'
+xcodebuild test -scheme StandBy -destination 'platform=macOS'
 ```
 
 ## ライセンス

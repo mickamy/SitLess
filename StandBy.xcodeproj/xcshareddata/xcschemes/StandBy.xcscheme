@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
-               BuildableName = "SitLess.app"
-               BlueprintName = "SitLess"
-               ReferencedContainer = "container:SitLess.xcodeproj">
+               BuildableName = "StandBy.app"
+               BlueprintName = "StandBy"
+               ReferencedContainer = "container:StandBy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,9 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "279ADC9E2F511D2800CD47F4"
-               BuildableName = "SitLessTests.xctest"
-               BlueprintName = "SitLessTests"
-               ReferencedContainer = "container:SitLess.xcodeproj">
+               BuildableName = "StandByTests.xctest"
+               BlueprintName = "StandByTests"
+               ReferencedContainer = "container:StandBy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
-            BuildableName = "SitLess.app"
-            BlueprintName = "SitLess"
-            ReferencedContainer = "container:SitLess.xcodeproj">
+            BuildableName = "StandBy.app"
+            BlueprintName = "StandBy"
+            ReferencedContainer = "container:StandBy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27F3CD5D2F510CDC00D095F9"
-            BuildableName = "SitLess.app"
-            BlueprintName = "SitLess"
-            ReferencedContainer = "container:SitLess.xcodeproj">
+            BuildableName = "StandBy.app"
+            BlueprintName = "StandBy"
+            ReferencedContainer = "container:StandBy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

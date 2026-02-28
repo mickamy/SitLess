@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 
-@testable import SitLess
+@testable import StandBy
 
 struct StretchTests {
     @Test func codableRoundTrip() throws {

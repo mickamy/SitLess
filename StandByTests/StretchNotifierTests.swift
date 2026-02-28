@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 
-@testable import SitLess
+@testable import StandBy
 
 private final class SpyNotificationSender: NotificationSending, @unchecked Sendable {
     var authorizationResult = true
@@ -25,7 +25,7 @@ private func makeStretches() -> [Stretch] {
 
 struct StretchNotifierTests {
     private func makeSUT() -> (StretchNotifier, SpyNotificationSender) {
-        let suite = "com.mickamy.SitLess.tests.\(UUID().uuidString)"
+        let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
         let storage = UserDefaultsStorageProvider(defaults: UserDefaults(suiteName: suite)!)
         let sender = SpyNotificationSender()
         let notifier = StretchNotifier(storage: storage, sender: sender)

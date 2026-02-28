@@ -12,24 +12,24 @@
 			containerPortal = 27F3CD562F510CDC00D095F9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 27F3CD5D2F510CDC00D095F9;
-			remoteInfo = SitLess;
+			remoteInfo = StandBy;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SitLessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		27F3CD5E2F510CDC00D095F9 /* SitLess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SitLess.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		279ADC9F2F511D2800CD47F4 /* StandByTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandByTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F3CD5E2F510CDC00D095F9 /* StandBy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StandBy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		279ADCA02F511D2800CD47F4 /* SitLessTests */ = {
+		279ADCA02F511D2800CD47F4 /* StandByTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SitLessTests;
+			path = StandByTests;
 			sourceTree = "<group>";
 		};
-		27F3CD602F510CDC00D095F9 /* SitLess */ = {
+		27F3CD602F510CDC00D095F9 /* StandBy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SitLess;
+			path = StandBy;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -55,8 +55,8 @@
 		27F3CD552F510CDC00D095F9 = {
 			isa = PBXGroup;
 			children = (
-				27F3CD602F510CDC00D095F9 /* SitLess */,
-				279ADCA02F511D2800CD47F4 /* SitLessTests */,
+				27F3CD602F510CDC00D095F9 /* StandBy */,
+				279ADCA02F511D2800CD47F4 /* StandByTests */,
 				27F3CD5F2F510CDC00D095F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,8 +64,8 @@
 		27F3CD5F2F510CDC00D095F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27F3CD5E2F510CDC00D095F9 /* SitLess.app */,
-				279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */,
+				27F3CD5E2F510CDC00D095F9 /* StandBy.app */,
+				279ADC9F2F511D2800CD47F4 /* StandByTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,9 +73,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		279ADC9E2F511D2800CD47F4 /* SitLessTests */ = {
+		279ADC9E2F511D2800CD47F4 /* StandByTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "SitLessTests" */;
+			buildConfigurationList = 279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "StandByTests" */;
 			buildPhases = (
 				279ADC9B2F511D2800CD47F4 /* Sources */,
 				279ADC9C2F511D2800CD47F4 /* Frameworks */,
@@ -87,18 +87,18 @@
 				279ADCA42F511D2800CD47F4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				279ADCA02F511D2800CD47F4 /* SitLessTests */,
+				279ADCA02F511D2800CD47F4 /* StandByTests */,
 			);
-			name = SitLessTests;
+			name = StandByTests;
 			packageProductDependencies = (
 			);
-			productName = SitLessTests;
-			productReference = 279ADC9F2F511D2800CD47F4 /* SitLessTests.xctest */;
+			productName = StandByTests;
+			productReference = 279ADC9F2F511D2800CD47F4 /* StandByTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		27F3CD5D2F510CDC00D095F9 /* SitLess */ = {
+		27F3CD5D2F510CDC00D095F9 /* StandBy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27F3CD692F510CDC00D095F9 /* Build configuration list for PBXNativeTarget "SitLess" */;
+			buildConfigurationList = 27F3CD692F510CDC00D095F9 /* Build configuration list for PBXNativeTarget "StandBy" */;
 			buildPhases = (
 				27F3CD5A2F510CDC00D095F9 /* Sources */,
 				27F3CD5B2F510CDC00D095F9 /* Frameworks */,
@@ -109,13 +109,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				27F3CD602F510CDC00D095F9 /* SitLess */,
+				27F3CD602F510CDC00D095F9 /* StandBy */,
 			);
-			name = SitLess;
+			name = StandBy;
 			packageProductDependencies = (
 			);
-			productName = SitLess;
-			productReference = 27F3CD5E2F510CDC00D095F9 /* SitLess.app */;
+			productName = StandBy;
+			productReference = 27F3CD5E2F510CDC00D095F9 /* StandBy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +137,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 27F3CD592F510CDC00D095F9 /* Build configuration list for PBXProject "SitLess" */;
+			buildConfigurationList = 27F3CD592F510CDC00D095F9 /* Build configuration list for PBXProject "StandBy" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -151,8 +151,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				27F3CD5D2F510CDC00D095F9 /* SitLess */,
-				279ADC9E2F511D2800CD47F4 /* SitLessTests */,
+				27F3CD5D2F510CDC00D095F9 /* StandBy */,
+				279ADC9E2F511D2800CD47F4 /* StandByTests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,7 +194,7 @@
 /* Begin PBXTargetDependency section */
 		279ADCA42F511D2800CD47F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 27F3CD5D2F510CDC00D095F9 /* SitLess */;
+			target = 27F3CD5D2F510CDC00D095F9 /* StandBy */;
 			targetProxy = 279ADCA32F511D2800CD47F4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -209,14 +209,14 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLessTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandByTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SitLess.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SitLess";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StandBy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StandBy";
 			};
 			name = Debug;
 		};
@@ -229,14 +229,14 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLessTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandByTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SitLess.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SitLess";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StandBy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StandBy";
 			};
 			name = Release;
 		};
@@ -380,7 +380,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -412,7 +412,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.SitLess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -427,7 +427,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "SitLessTests" */ = {
+		279ADCA72F511D2800CD47F4 /* Build configuration list for PBXNativeTarget "StandByTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				279ADCA52F511D2800CD47F4 /* Debug */,
@@ -436,7 +436,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27F3CD592F510CDC00D095F9 /* Build configuration list for PBXProject "SitLess" */ = {
+		27F3CD592F510CDC00D095F9 /* Build configuration list for PBXProject "StandBy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27F3CD672F510CDC00D095F9 /* Debug */,
@@ -445,7 +445,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27F3CD692F510CDC00D095F9 /* Build configuration list for PBXNativeTarget "SitLess" */ = {
+		27F3CD692F510CDC00D095F9 /* Build configuration list for PBXNativeTarget "StandBy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27F3CD6A2F510CDC00D095F9 /* Debug */,
