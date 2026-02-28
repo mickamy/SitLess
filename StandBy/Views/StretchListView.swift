@@ -11,7 +11,7 @@ struct StretchListView: View {
                     Image(systemName: "chevron.left")
                 }
                 .buttonStyle(.plain)
-                Text("ストレッチ一覧")
+                Text("Stretches")
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -26,7 +26,7 @@ struct StretchListView: View {
                                 Text(stretch.name)
                                     .fontWeight(.medium)
                                 Spacer()
-                                Text("\(stretch.durationSeconds)秒")
+                                Text("\(stretch.durationSeconds)s")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }

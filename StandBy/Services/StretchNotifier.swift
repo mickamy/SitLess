@@ -21,8 +21,8 @@ struct StretchNotifier {
         storage.advanceStretchIndex(count: stretches.count)
 
         sender.send(
-            title: "ストレッチの時間です！",
-            body: "\(stretch.name)（\(stretch.durationSeconds)秒）— \(stretch.instruction)"
+            title: String(localized: "Time to stretch!"),
+            body: String(localized: "\(stretch.name) (\(stretch.durationSeconds)s) — \(stretch.instruction)")
         )
     }
 }

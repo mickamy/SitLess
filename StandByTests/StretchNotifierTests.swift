@@ -57,7 +57,7 @@ struct StretchNotifierTests {
         sut.sendStretchReminder(stretches: makeStretches())
 
         #expect(sender.sentNotifications.count == 1)
-        #expect(sender.sentNotifications[0].title == "ストレッチの時間です！")
+        #expect(sender.sentNotifications[0].title == "Time to stretch!")
         #expect(sender.sentNotifications[0].body.contains("ストレッチA"))
     }
 
@@ -82,7 +82,7 @@ struct StretchNotifierTests {
         sut.sendStretchReminder(stretches: stretches)
 
         let body = sender.sentNotifications[0].body
-        #expect(body.contains("30秒"))
+        #expect(body.contains("30s"))
         #expect(body.contains("説明A"))
     }
 }

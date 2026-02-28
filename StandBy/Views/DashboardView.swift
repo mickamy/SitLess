@@ -22,7 +22,7 @@ struct DashboardView: View {
     private var mainDashboard: some View {
         VStack(spacing: 12) {
             HStack {
-                Text("今日の座り時間")
+                Text("Today's sitting time")
                 Spacer()
                 Text(tracker.formattedDailyTotal)
                     .fontWeight(.semibold)
@@ -30,7 +30,7 @@ struct DashboardView: View {
             }
 
             HStack {
-                Text("連続座り時間")
+                Text("Continuous sitting time")
                 Spacer()
                 Text(tracker.formattedCurrentSession)
                     .fontWeight(.semibold)
@@ -39,9 +39,9 @@ struct DashboardView: View {
             }
 
             HStack {
-                Text("ストレッチ済み")
+                Text("Stretches done")
                 Spacer()
-                Text("\(tracker.dailyRecord.stretchCount) 回")
+                Text("\(tracker.dailyRecord.stretchCount) times")
                     .fontWeight(.semibold)
                     .monospacedDigit()
             }
@@ -50,14 +50,14 @@ struct DashboardView: View {
                 ProgressView(value: tracker.progressToNextStretch)
                     .tint(sessionColor)
                 Text(tracker.minutesToNextStretch > 0
-                    ? "次のストレッチまで \(tracker.minutesToNextStretch)分"
-                    : "ストレッチの時間です！")
+                    ? "\(tracker.minutesToNextStretch) min to stretch"
+                    : "Time to stretch!")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
 
             Button(action: { tracker.markStretchDone() }) {
-                Text("ストレッチする")
+                Text("Do a stretch")
                     .frame(maxWidth: .infinity)
             }
             .controlSize(.large)
@@ -65,15 +65,15 @@ struct DashboardView: View {
             Divider()
 
             HStack {
-                Button("ストレッチ一覧") {
+                Button("Stretches") {
                     showStretches = true
                 }
                 Spacer()
-                Button("設定") {
+                Button("Settings") {
                     showSettings = true
                 }
                 Spacer()
-                Button("終了") {
+                Button("Quit") {
                     NSApplication.shared.terminate(nil)
                 }
             }

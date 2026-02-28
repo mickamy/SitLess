@@ -12,7 +12,7 @@ struct SettingsView: View {
                     Image(systemName: "chevron.left")
                 }
                 .buttonStyle(.plain)
-                Text("設定")
+                Text("Settings")
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -21,19 +21,19 @@ struct SettingsView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Stepper(
-                    "ストレッチ通知間隔: \(tracker.settings.stretchIntervalMinutes)分",
+                    "Stretch interval: \(tracker.settings.stretchIntervalMinutes) min",
                     value: $tracker.settings.stretchIntervalMinutes,
                     in: Settings.stretchIntervalRange,
                     step: 5
                 )
 
                 Stepper(
-                    "離席判定: \(tracker.settings.idleThresholdMinutes)分",
+                    "Idle threshold: \(tracker.settings.idleThresholdMinutes) min",
                     value: $tracker.settings.idleThresholdMinutes,
                     in: Settings.idleThresholdRange
                 )
 
-                Toggle("ログイン時に自動起動", isOn: $tracker.settings.launchAtLogin)
+                Toggle("Launch at login", isOn: $tracker.settings.launchAtLogin)
             }
         }
         .onChange(of: tracker.settings) {
