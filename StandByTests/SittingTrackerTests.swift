@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 
-@testable import SitLess
+@testable import StandBy
 
 // MARK: - Test Doubles
 
@@ -35,7 +35,7 @@ private func makeSUT(
     stretchInterval: Int = 30,
     idleThreshold: Int = 5
 ) -> (SittingTracker, SpyNotificationSender, UserDefaultsStorageProvider, StubIdleTimeProvider) {
-    let suite = "com.mickamy.SitLess.tests.\(UUID().uuidString)"
+    let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
     let storage = UserDefaultsStorageProvider(defaults: UserDefaults(suiteName: suite)!)
     let settings = Settings(stretchIntervalMinutes: stretchInterval, idleThresholdMinutes: idleThreshold)
     storage.saveSettings(settings)

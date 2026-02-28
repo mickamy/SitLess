@@ -1,11 +1,11 @@
 import Foundation
 import Testing
 
-@testable import SitLess
+@testable import StandBy
 
 struct StorageServiceTests {
     private func makeSUT() -> UserDefaultsStorageProvider {
-        let suite = "com.mickamy.SitLess.tests.\(UUID().uuidString)"
+        let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suite)!
         return UserDefaultsStorageProvider(defaults: defaults)
     }

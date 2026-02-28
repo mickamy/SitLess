@@ -11,7 +11,7 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 }
 
 @main
-struct SitLessApp: App {
+struct StandByApp: App {
     @State private var tracker = SittingTracker(
         stretches: loadBundledStretches()
     )
