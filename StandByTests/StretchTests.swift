@@ -7,10 +7,10 @@ struct StretchTests {
     @Test func codableRoundTrip() throws {
         let stretch = Stretch(
             id: "cat-cow",
-            name: "キャット&カウ",
-            instruction: "四つん這いで背中を丸める→反らす",
+            name: "Cat & Cow",
+            instruction: "On all fours, round then arch your back",
             durationSeconds: 30,
-            targetArea: "腰"
+            targetArea: "Lower Back"
         )
 
         let data = try JSONEncoder().encode(stretch)
@@ -20,8 +20,8 @@ struct StretchTests {
     }
 
     @Test func equatableUsesAllProperties() {
-        let a = Stretch(id: "cat-cow", name: "A", instruction: "", durationSeconds: 30, targetArea: "腰")
-        let b = Stretch(id: "cat-cow", name: "B", instruction: "", durationSeconds: 60, targetArea: "肩")
+        let a = Stretch(id: "cat-cow", name: "A", instruction: "", durationSeconds: 30, targetArea: "Lower Back")
+        let b = Stretch(id: "cat-cow", name: "B", instruction: "", durationSeconds: 60, targetArea: "Shoulders")
 
         #expect(a.id == b.id)
         #expect(a != b)
@@ -31,16 +31,16 @@ struct StretchTests {
         let json = """
         {
             "id": "child-pose",
-            "name": "チャイルドポーズ",
-            "instruction": "正座から前に手を伸ばす",
+            "name": "Child's Pose",
+            "instruction": "From kneeling, reach your arms forward",
             "durationSeconds": 30,
-            "targetArea": "腰"
+            "targetArea": "Lower Back"
         }
         """
         let decoded = try JSONDecoder().decode(Stretch.self, from: Data(json.utf8))
 
         #expect(decoded.id == "child-pose")
-        #expect(decoded.name == "チャイルドポーズ")
+        #expect(decoded.name == "Child's Pose")
         #expect(decoded.durationSeconds == 30)
     }
 }

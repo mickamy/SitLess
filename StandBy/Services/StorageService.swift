@@ -7,6 +7,8 @@ protocol StorageProviding: Sendable {
     func saveDailyRecord(_ record: DailyRecord)
     func nextStretchIndex() -> Int
     func advanceStretchIndex(count: Int)
+    func loadLastCheckDate() -> Date?
+    func saveLastCheckDate(_ date: Date?)
 }
 
 final class UserDefaultsStorageProvider: StorageProviding, Sendable {
@@ -63,6 +65,18 @@ final class UserDefaultsStorageProvider: StorageProviding, Sendable {
         guard count > 0 else { return }
         let current = defaults.integer(forKey: "lastStretchIndex")
         defaults.set((current + 1) % count, forKey: "lastStretchIndex")
+    }
+
+    func loadLastCheckDate() -> Date? {
+        defaults.object(forKey: "lastCheckDate") as? Date
+    }
+
+    func saveLastCheckDate(_ date: Date?) {
+        if let date {
+            defaults.set(date, forKey: "lastCheckDate")
+        } else {
+            defaults.removeObject(forKey: "lastCheckDate")
+        }
     }
 
     private func dailyRecordKey(for day: CalendarDay) -> String {

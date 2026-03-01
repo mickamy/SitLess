@@ -140,6 +140,226 @@
           }
         }
       }
+    },
+    "Cat & Cow" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャット&カウ"
+          }
+        }
+      }
+    },
+    "Child's Pose" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "チャイルドポーズ"
+          }
+        }
+      }
+    },
+    "Knee Hug" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "膝抱え"
+          }
+        }
+      }
+    },
+    "Spinal Twist" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腰ひねり"
+          }
+        }
+      }
+    },
+    "Standing Forward Bend" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立位前屈"
+          }
+        }
+      }
+    },
+    "Hip Flexor Stretch" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "股関節ストレッチ"
+          }
+        }
+      }
+    },
+    "Glute Stretch" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お尻ストレッチ"
+          }
+        }
+      }
+    },
+    "Shoulder Rolls" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "肩甲骨回し"
+          }
+        }
+      }
+    },
+    "On all fours, round then arch your back" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "四つん這いで背中を丸める→反らす"
+          }
+        }
+      }
+    },
+    "From kneeling, reach your arms forward" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正座から前に手を伸ばす"
+          }
+        }
+      }
+    },
+    "Lying on your back, pull one knee to your chest (30s each side)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仰向けで片膝を胸に引き寄せる（片側30秒）"
+          }
+        }
+      }
+    },
+    "Lying on your back, drop your knees to one side (30s each side)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仰向けで膝を横に倒す（片側30秒）"
+          }
+        }
+      }
+    },
+    "Stand and bend forward, slight knee bend is OK" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立って前屈、膝は軽く曲げてOK"
+          }
+        }
+      }
+    },
+    "In a lunge position, shift weight forward (30s each side)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "片膝立ちで前に体重をかける（片側30秒）"
+          }
+        }
+      }
+    },
+    "Seated, place one ankle on the opposite knee and lean forward (30s each side)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "椅子に座って片足を反対の膝に乗せて前傾（片側30秒）"
+          }
+        }
+      }
+    },
+    "Roll both shoulders in large circles" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "両肩を大きく回す"
+          }
+        }
+      }
+    },
+    "Lower Back" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腰"
+          }
+        }
+      }
+    },
+    "Lower Back & Hips" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腰・股関節"
+          }
+        }
+      }
+    },
+    "Lower Back & Hamstrings" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "腰・ハムストリング"
+          }
+        }
+      }
+    },
+    "Hips" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "股関節"
+          }
+        }
+      }
+    },
+    "Glutes & Hips" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お尻・股関節"
+          }
+        }
+      }
+    },
+    "Shoulders & Back" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "肩・背中"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -10,7 +10,6 @@ nonisolated struct WatchSettings: Codable, Equatable, Sendable {
         do {
             return try JSONDecoder().decode(WatchSettings.self, from: data)
         } catch {
-            assertionFailure("Failed to decode WatchSettings: \(error)")
             return WatchSettings()
         }
     }

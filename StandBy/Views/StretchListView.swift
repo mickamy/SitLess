@@ -23,17 +23,17 @@ struct StretchListView: View {
                     ForEach(stretches) { stretch in
                         VStack(alignment: .leading, spacing: 2) {
                             HStack {
-                                Text(stretch.name)
+                                Text(stretch.localizedName)
                                     .fontWeight(.medium)
                                 Spacer()
                                 Text("\(stretch.durationSeconds)s")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
-                            Text(stretch.instruction)
+                            Text(stretch.localizedInstruction)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
-                            Text(stretch.targetArea)
+                            Text(stretch.localizedTargetArea)
                                 .font(.caption2)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2)

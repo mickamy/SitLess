@@ -1,0 +1,22 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSMotionUsageDescription" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app uses motion data to detect when you have been sitting for too long."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリはモーションデータを使用して、長時間座り続けていることを検出します。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

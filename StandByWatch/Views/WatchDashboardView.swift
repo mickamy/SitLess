@@ -4,18 +4,24 @@ struct WatchDashboardView: View {
     @Bindable var tracker: WatchSittingTracker
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 12) {
+        List {
+            Section {
                 VStack(spacing: 4) {
                     Text(tracker.formattedCurrentSession)
                         .font(.system(.title, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundStyle(sessionColor)
                         .monospacedDigit()
-                    Text("Sitting time")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Circle()
+                            .fill(tracker.isStationary ? Color.green : Color.gray)
+                            .frame(width: 6, height: 6)
+                        Text(tracker.isStationary ? "Sitting" : "Active")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
+                .frame(maxWidth: .infinity)
 
                 ProgressView(value: tracker.progressToNextStretch)
                     .tint(sessionColor)
@@ -25,11 +31,17 @@ struct WatchDashboardView: View {
                     : "Time to stretch!")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+            }
 
+            Section {
                 Button(action: { tracker.markStretchDone() }) {
                     Label("Stretch", systemImage: "figure.cooldown")
+                        .frame(maxWidth: .infinity)
                 }
+            }
 
+            Section {
                 HStack {
                     VStack {
                         Text(tracker.formattedDailyTotal)
@@ -51,17 +63,16 @@ struct WatchDashboardView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-
-                Divider()
-
-                HStack {
-                    NavigationLink("Stretches", destination: WatchStretchListView(stretches: tracker.stretches))
-                    Spacer()
-                    NavigationLink("Settings", destination: WatchSettingsView(tracker: tracker))
-                }
-                .font(.caption)
             }
-            .padding(.horizontal)
+
+            Section {
+                NavigationLink(destination: WatchStretchListView(stretches: tracker.stretches)) {
+                    Label("Stretches", systemImage: "list.bullet")
+                }
+                NavigationLink(destination: WatchSettingsView(tracker: tracker)) {
+                    Label("Settings", systemImage: "gearshape")
+                }
+            }
         }
         .navigationTitle("StandBy")
     }

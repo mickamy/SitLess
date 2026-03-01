@@ -18,8 +18,8 @@ private final class SpyNotificationSender: NotificationSending, @unchecked Senda
 
 private func makeStretches() -> [Stretch] {
     [
-        Stretch(id: "a", name: "ストレッチA", instruction: "説明A", durationSeconds: 30, targetArea: "腰"),
-        Stretch(id: "b", name: "ストレッチB", instruction: "説明B", durationSeconds: 20, targetArea: "肩"),
+        Stretch(id: "a", name: "Stretch A", instruction: "Instruction A", durationSeconds: 30, targetArea: "Lower Back"),
+        Stretch(id: "b", name: "Stretch B", instruction: "Instruction B", durationSeconds: 20, targetArea: "Shoulders"),
     ]
 }
 
@@ -58,7 +58,7 @@ struct StretchNotifierTests {
 
         #expect(sender.sentNotifications.count == 1)
         #expect(sender.sentNotifications[0].title == "Time to stretch!")
-        #expect(sender.sentNotifications[0].body.contains("ストレッチA"))
+        #expect(sender.sentNotifications[0].body.contains("Stretch A"))
     }
 
     @Test func sendStretchReminderRotatesThroughStretches() {
@@ -70,9 +70,9 @@ struct StretchNotifierTests {
         sut.sendStretchReminder(stretches: stretches)
 
         #expect(sender.sentNotifications.count == 3)
-        #expect(sender.sentNotifications[0].body.contains("ストレッチA"))
-        #expect(sender.sentNotifications[1].body.contains("ストレッチB"))
-        #expect(sender.sentNotifications[2].body.contains("ストレッチA"))
+        #expect(sender.sentNotifications[0].body.contains("Stretch A"))
+        #expect(sender.sentNotifications[1].body.contains("Stretch B"))
+        #expect(sender.sentNotifications[2].body.contains("Stretch A"))
     }
 
     @Test func notificationBodyIncludesDurationAndInstruction() {
@@ -83,6 +83,6 @@ struct StretchNotifierTests {
 
         let body = sender.sentNotifications[0].body
         #expect(body.contains("30s"))
-        #expect(body.contains("説明A"))
+        #expect(body.contains("Instruction A"))
     }
 }

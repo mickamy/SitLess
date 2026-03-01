@@ -25,6 +25,8 @@ final class WatchSittingTracker {
     private let today: () -> CalendarDay
     /// Internal for testability; updated by MotionActivityProviding callback.
     var isStationary: Bool = false
+    /// Tracks the last time background or foreground processing occurred.
+    var lastCheckDate: Date?
 
     init(
         motionProvider: any MotionActivityProviding = CMMotionActivityProvider(),
@@ -42,6 +44,7 @@ final class WatchSittingTracker {
         self.stretches = stretches
         self.watchSettings = watchSettings
         self.notifier = notifier ?? WatchStretchNotifier(storage: storage)
+        self.lastCheckDate = storage.loadLastCheckDate()
     }
 
     deinit {
@@ -51,8 +54,9 @@ final class WatchSittingTracker {
     // MARK: - Tracking
 
     func startTracking() {
-        motionProvider.startMonitoring { [weak self] stationary in
-            Task { @MainActor in
+        updateLastCheckDate(Date())
+        motionProvider.startMonitoring { stationary in
+            Task { @MainActor [weak self] in
                 self?.isStationary = stationary
             }
         }
@@ -70,6 +74,7 @@ final class WatchSittingTracker {
 
     /// Called every 60 seconds by the timer. Internal for testability.
     func tick() {
+        updateLastCheckDate(Date())
         checkDateRollover()
 
         if isStationary {
@@ -78,6 +83,69 @@ final class WatchSittingTracker {
             handleNotSitting()
         }
 
+        storage.saveDailyRecord(dailyRecord)
+    }
+
+    /// Called from the background refresh task to catch up on missed sitting time.
+    func performBackgroundUpdate() async {
+        let now = Date()
+        let start = lastCheckDate ?? now
+
+        guard start < now else {
+            updateLastCheckDate(now)
+            return
+        }
+
+        checkDateRollover()
+
+        // Close orphaned open sessions from a previous app run.
+        // When the app is terminated by the system, currentSession is lost
+        // but the open session remains in dailyRecord.sessions.
+        if currentSession == nil {
+            dailyRecord.sessions = dailyRecord.sessions.map { session in
+                guard session.endedAt == nil else { return session }
+                var closed = session
+                closed.endedAt = start
+                return closed
+            }
+        }
+
+        let stationarySeconds = await motionProvider.queryStationaryDuration(from: start, to: now)
+        let stationaryMinutes = Int(stationarySeconds) / 60
+
+        if stationaryMinutes > 0 {
+            let additionalSeconds = stationaryMinutes * 60
+            if currentSession == nil {
+                // Align startedAt with stationary duration so durationSeconds
+                // stays consistent with currentSessionSeconds.
+                currentSession = SittingSession(startedAt: now.addingTimeInterval(TimeInterval(-additionalSeconds)))
+            }
+            currentSessionSeconds += additionalSeconds
+            dailyRecord.sessions = updateCurrentSessionInList()
+
+            let intervalSeconds = settings.stretchIntervalMinutes * 60
+            if intervalSeconds > 0 {
+                let expected = currentSessionSeconds / intervalSeconds
+                if expected > notificationsSentInSession {
+                    // Send at most one notification per background catch-up
+                    // to avoid flooding the user after a long background period.
+                    notifier.sendStretchReminder(
+                        stretches: stretches,
+                        hapticEnabled: watchSettings.hapticEnabled
+                    )
+                    notificationsSentInSession = expected
+                }
+            }
+        }
+
+        // Sync isStationary with recent motion so the first foreground tick
+        // does not immediately reset the restored session.
+        let recentStationary = await motionProvider.queryStationaryDuration(
+            from: Date(timeIntervalSinceNow: -60), to: now
+        )
+        isStationary = recentStationary > 30
+
+        updateLastCheckDate(now)
         storage.saveDailyRecord(dailyRecord)
     }
 
@@ -184,6 +252,11 @@ final class WatchSittingTracker {
         var sessions = dailyRecord.sessions.filter { $0.endedAt != nil }
         sessions.append(session)
         return sessions
+    }
+
+    private func updateLastCheckDate(_ date: Date) {
+        lastCheckDate = date
+        storage.saveLastCheckDate(date)
     }
 
     // NOTE: Identical to SittingTracker (macOS). Kept inline for simplicity.

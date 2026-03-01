@@ -7,7 +7,7 @@ struct WatchStretchListView: View {
         List(stretches) { stretch in
             NavigationLink(destination: StretchDetailView(stretch: stretch)) {
                 VStack(alignment: .leading) {
-                    Text(stretch.name)
+                    Text(stretch.localizedName)
                         .font(.caption)
                     Text("\(stretch.durationSeconds)s")
                         .font(.caption2)
@@ -25,17 +25,17 @@ private struct StretchDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                Text(stretch.name)
+                Text(stretch.localizedName)
                     .font(.headline)
                 Text("\(stretch.durationSeconds) seconds")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Divider()
-                Text(stretch.instruction)
+                Text(stretch.localizedInstruction)
                     .font(.caption2)
             }
             .padding(.horizontal)
         }
-        .navigationTitle(stretch.name)
+        .navigationTitle(stretch.localizedName)
     }
 }
