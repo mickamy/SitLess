@@ -23,7 +23,18 @@ final class CMMotionActivityProvider: MotionActivityProviding, @unchecked Sendab
         guard CMMotionActivityManager.isActivityAvailable() else { return }
         manager.startActivityUpdates(to: queue) { activity in
             guard let activity else { return }
-            handler(activity.stationary)
+            let isActive = activity.walking || activity.running
+                || activity.cycling || activity.automotive
+            if isActive {
+                handler(false)
+            } else if activity.stationary {
+                handler(true)
+            } else if activity.confidence != .low {
+                // Unknown activity with medium/high confidence and no active
+                // movement detected — likely sitting. Low-confidence updates
+                // are ignored to keep the previous state.
+                handler(true)
+            }
         }
     }
 
@@ -42,7 +53,12 @@ final class CMMotionActivityProvider: MotionActivityProviding, @unchecked Sendab
                 }
 
                 var total: TimeInterval = 0
-                for (i, activity) in activities.enumerated() where activity.stationary {
+                for (i, activity) in activities.enumerated() {
+                    let isActive = activity.walking || activity.running
+                        || activity.cycling || activity.automotive
+                    let isSitting = activity.stationary
+                        || (!isActive && activity.confidence != .low)
+                    guard isSitting else { continue }
                     let nextStart = i + 1 < activities.count ? activities[i + 1].startDate : end
                     total += nextStart.timeIntervalSince(activity.startDate)
                 }
