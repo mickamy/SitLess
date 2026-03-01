@@ -12,9 +12,14 @@ struct WatchDashboardView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(sessionColor)
                         .monospacedDigit()
-                    Text("Sitting time")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Circle()
+                            .fill(tracker.isStationary ? Color.green : Color.gray)
+                            .frame(width: 6, height: 6)
+                        Text(tracker.isStationary ? "Sitting" : "Active")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .frame(maxWidth: .infinity)
 
