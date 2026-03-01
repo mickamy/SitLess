@@ -269,4 +269,70 @@ struct WatchSittingTrackerTests {
         sut.tick()
         #expect(sut.lastCheckDate != nil)
     }
+
+    @Test func performBackgroundUpdateClosesOrphanedSessions() async {
+        let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
+        let storage = UserDefaultsStorageProvider(defaults: UserDefaults(suiteName: suite)!)
+
+        // Pre-save a daily record with an orphaned open session
+        let day = CalendarDay()
+        var record = DailyRecord(date: day)
+        record.sessions = [SittingSession(startedAt: Date(timeIntervalSinceNow: -3600))]
+        storage.saveDailyRecord(record)
+
+        let lastCheck = Date(timeIntervalSinceNow: -600)
+        storage.saveLastCheckDate(lastCheck)
+
+        let sender = SpyNotificationSender()
+        let haptic = SpyHapticPlayer()
+        let notifier = WatchStretchNotifier(storage: storage, sender: sender, haptic: haptic)
+        let motion = StubMotionProvider()
+        motion.stationaryDuration = 300
+
+        let sut = WatchSittingTracker(
+            motionProvider: motion,
+            storage: storage,
+            notifier: notifier,
+            stretches: testStretches,
+            watchSettings: WatchSettings(hapticEnabled: true)
+        )
+
+        await sut.performBackgroundUpdate()
+
+        // The orphaned session should be closed
+        let closedSessions = sut.dailyRecord.sessions.filter { $0.endedAt != nil }
+        #expect(closedSessions.count >= 1)
+        // New session should be created with recent stationary time
+        #expect(sut.currentSessionSeconds == 300)
+    }
+
+    @Test func lastCheckDatePersistedAcrossInstances() {
+        let suite = "com.mickamy.StandBy.tests.\(UUID().uuidString)"
+        let storage = UserDefaultsStorageProvider(defaults: UserDefaults(suiteName: suite)!)
+        let sender = SpyNotificationSender()
+        let haptic = SpyHapticPlayer()
+        let notifier = WatchStretchNotifier(storage: storage, sender: sender, haptic: haptic)
+        let motion = StubMotionProvider()
+
+        let tracker1 = WatchSittingTracker(
+            motionProvider: motion,
+            storage: storage,
+            notifier: notifier,
+            stretches: testStretches,
+            watchSettings: WatchSettings(hapticEnabled: true)
+        )
+        tracker1.startTracking()
+        let savedDate = tracker1.lastCheckDate
+        tracker1.stopTracking()
+
+        let tracker2 = WatchSittingTracker(
+            motionProvider: motion,
+            storage: storage,
+            notifier: notifier,
+            stretches: testStretches,
+            watchSettings: WatchSettings(hapticEnabled: true)
+        )
+        #expect(tracker2.lastCheckDate != nil)
+        #expect(abs(tracker2.lastCheckDate!.timeIntervalSince(savedDate!)) < 1)
+    }
 }

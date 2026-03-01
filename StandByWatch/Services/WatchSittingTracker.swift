@@ -44,6 +44,7 @@ final class WatchSittingTracker {
         self.stretches = stretches
         self.watchSettings = watchSettings
         self.notifier = notifier ?? WatchStretchNotifier(storage: storage)
+        self.lastCheckDate = storage.loadLastCheckDate()
     }
 
     deinit {
@@ -53,7 +54,7 @@ final class WatchSittingTracker {
     // MARK: - Tracking
 
     func startTracking() {
-        lastCheckDate = Date()
+        updateLastCheckDate(Date())
         motionProvider.startMonitoring { stationary in
             Task { @MainActor [weak self] in
                 self?.isStationary = stationary
@@ -73,7 +74,7 @@ final class WatchSittingTracker {
 
     /// Called every 60 seconds by the timer. Internal for testability.
     func tick() {
-        lastCheckDate = Date()
+        updateLastCheckDate(Date())
         checkDateRollover()
 
         if isStationary {
@@ -91,11 +92,23 @@ final class WatchSittingTracker {
         let start = lastCheckDate ?? now
 
         guard start < now else {
-            lastCheckDate = now
+            updateLastCheckDate(now)
             return
         }
 
         checkDateRollover()
+
+        // Close orphaned open sessions from a previous app run.
+        // When the app is terminated by the system, currentSession is lost
+        // but the open session remains in dailyRecord.sessions.
+        if currentSession == nil {
+            dailyRecord.sessions = dailyRecord.sessions.map { session in
+                guard session.endedAt == nil else { return session }
+                var closed = session
+                closed.endedAt = start
+                return closed
+            }
+        }
 
         let stationarySeconds = await motionProvider.queryStationaryDuration(from: start, to: now)
         let stationaryMinutes = Int(stationarySeconds) / 60
@@ -132,7 +145,7 @@ final class WatchSittingTracker {
         )
         isStationary = recentStationary > 30
 
-        lastCheckDate = now
+        updateLastCheckDate(now)
         storage.saveDailyRecord(dailyRecord)
     }
 
@@ -239,6 +252,11 @@ final class WatchSittingTracker {
         var sessions = dailyRecord.sessions.filter { $0.endedAt != nil }
         sessions.append(session)
         return sessions
+    }
+
+    private func updateLastCheckDate(_ date: Date) {
+        lastCheckDate = date
+        storage.saveLastCheckDate(date)
     }
 
     // NOTE: Identical to SittingTracker (macOS). Kept inline for simplicity.
