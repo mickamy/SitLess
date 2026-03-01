@@ -38,7 +38,7 @@ struct WatchStretchNotifier {
 
         sender.send(
             title: String(localized: "Time to stretch!"),
-            body: String(localized: "\(stretch.name) (\(stretch.durationSeconds)s) — \(stretch.instruction)")
+            body: String(localized: "\(stretch.localizedName) (\(stretch.durationSeconds)s) — \(stretch.localizedInstruction)")
         )
 
         if hapticEnabled {

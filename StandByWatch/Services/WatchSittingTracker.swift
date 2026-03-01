@@ -54,8 +54,8 @@ final class WatchSittingTracker {
 
     func startTracking() {
         lastCheckDate = Date()
-        motionProvider.startMonitoring { [weak self] stationary in
-            Task { @MainActor in
+        motionProvider.startMonitoring { stationary in
+            Task { @MainActor [weak self] in
                 self?.isStationary = stationary
             }
         }

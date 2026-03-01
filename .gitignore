@@ -60,4 +60,9 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/api_key.json
+fastlane/*.p8
+
+# Bundler
+vendor/bundle
 

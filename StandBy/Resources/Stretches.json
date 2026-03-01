@@ -1,58 +1,58 @@
 [
     {
         "id": "cat-cow",
-        "name": "キャット&カウ",
-        "instruction": "四つん這いで背中を丸める→反らす",
+        "name": "Cat & Cow",
+        "instruction": "On all fours, round then arch your back",
         "durationSeconds": 30,
-        "targetArea": "腰"
+        "targetArea": "Lower Back"
     },
     {
         "id": "child-pose",
-        "name": "チャイルドポーズ",
-        "instruction": "正座から前に手を伸ばす",
+        "name": "Child's Pose",
+        "instruction": "From kneeling, reach your arms forward",
         "durationSeconds": 30,
-        "targetArea": "腰"
+        "targetArea": "Lower Back"
     },
     {
         "id": "knee-hug",
-        "name": "膝抱え",
-        "instruction": "仰向けで片膝を胸に引き寄せる（片側30秒）",
+        "name": "Knee Hug",
+        "instruction": "Lying on your back, pull one knee to your chest (30s each side)",
         "durationSeconds": 60,
-        "targetArea": "腰・股関節"
+        "targetArea": "Lower Back & Hips"
     },
     {
         "id": "spinal-twist",
-        "name": "腰ひねり",
-        "instruction": "仰向けで膝を横に倒す（片側30秒）",
+        "name": "Spinal Twist",
+        "instruction": "Lying on your back, drop your knees to one side (30s each side)",
         "durationSeconds": 60,
-        "targetArea": "腰"
+        "targetArea": "Lower Back"
     },
     {
         "id": "standing-forward-bend",
-        "name": "立位前屈",
-        "instruction": "立って前屈、膝は軽く曲げてOK",
+        "name": "Standing Forward Bend",
+        "instruction": "Stand and bend forward, slight knee bend is OK",
         "durationSeconds": 20,
-        "targetArea": "腰・ハムストリング"
+        "targetArea": "Lower Back & Hamstrings"
     },
     {
         "id": "hip-flexor",
-        "name": "股関節ストレッチ",
-        "instruction": "片膝立ちで前に体重をかける（片側30秒）",
+        "name": "Hip Flexor Stretch",
+        "instruction": "In a lunge position, shift weight forward (30s each side)",
         "durationSeconds": 60,
-        "targetArea": "股関節"
+        "targetArea": "Hips"
     },
     {
         "id": "glute-stretch",
-        "name": "お尻ストレッチ",
-        "instruction": "椅子に座って片足を反対の膝に乗せて前傾（片側30秒）",
+        "name": "Glute Stretch",
+        "instruction": "Seated, place one ankle on the opposite knee and lean forward (30s each side)",
         "durationSeconds": 60,
-        "targetArea": "お尻・股関節"
+        "targetArea": "Glutes & Hips"
     },
     {
         "id": "shoulder-rolls",
-        "name": "肩甲骨回し",
-        "instruction": "両肩を大きく回す",
+        "name": "Shoulder Rolls",
+        "instruction": "Roll both shoulders in large circles",
         "durationSeconds": 20,
-        "targetArea": "肩・背中"
+        "targetArea": "Shoulders & Back"
     }
 ]

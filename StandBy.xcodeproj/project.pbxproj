@@ -87,6 +87,11 @@
 			path = StandByWatchTests;
 			sourceTree = "<group>";
 		};
+		27C5DF0B2F52C93700A1B2C3 /* StandByWatchContainer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = StandByWatchContainer;
+			sourceTree = "<group>";
+		};
 		27F3CD602F510CDC00D095F9 /* StandBy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -136,6 +141,7 @@
 				279ADCA02F511D2800CD47F4 /* StandByTests */,
 				27B4DE022F52000100F1A2B3 /* StandByWatch */,
 				27B4DE0C2F52000100F1A2B3 /* StandByWatchTests */,
+				27C5DF0B2F52C93700A1B2C3 /* StandByWatchContainer */,
 				27F3CD5F2F510CDC00D095F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -234,6 +240,9 @@
 			);
 			dependencies = (
 				27C5DF062F52C93700A1B2C3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				27C5DF0B2F52C93700A1B2C3 /* StandByWatchContainer */,
 			);
 			name = StandByWatchContainer;
 			packageProductDependencies = (
@@ -569,8 +578,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				INFOPLIST_KEY_CFBundleDisplayName = StandBy;
+				INFOPLIST_KEY_NSMotionUsageDescription = "This app uses motion data to detect when you have been sitting for too long.";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.container;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -586,8 +596,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				INFOPLIST_KEY_CFBundleDisplayName = StandBy;
+				INFOPLIST_KEY_NSMotionUsageDescription = "This app uses motion data to detect when you have been sitting for too long.";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.container;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
