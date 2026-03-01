@@ -22,7 +22,7 @@ struct StretchNotifier {
 
         sender.send(
             title: String(localized: "Time to stretch!"),
-            body: String(localized: "\(stretch.localizedName) (\(stretch.durationSeconds)s) — \(stretch.localizedInstruction)")
+            body: "\(stretch.localizedName) (\(stretch.durationSeconds)s) — \(stretch.localizedInstruction)"
         )
     }
 }
