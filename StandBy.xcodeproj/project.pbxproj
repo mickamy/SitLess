@@ -414,7 +414,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandByTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.mac.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -434,7 +434,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandByTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.mac.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -465,7 +465,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -476,7 +476,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -500,7 +500,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -512,7 +512,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -525,7 +525,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watchkitapp.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -548,7 +548,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watchkitapp.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -570,7 +570,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				INFOPLIST_KEY_CFBundleDisplayName = StandBy;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.container;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -587,7 +587,7 @@
 				DEVELOPMENT_TEAM = AZ28EH9G9N;
 				INFOPLIST_KEY_CFBundleDisplayName = StandBy;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.watch.container;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -737,7 +737,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.mac.StandBy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.mac;
 				PRODUCT_NAME = StandBy;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -769,7 +769,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.mac.StandBy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mickamy.StandBy.mac;
 				PRODUCT_NAME = StandBy;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
